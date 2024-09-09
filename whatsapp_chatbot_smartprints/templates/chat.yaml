@@ -1,0 +1,11 @@
+prompt: |
+  Use the context below and the chat history to answer the question:
+
+  Context: 
+  {context}
+
+  Question: {question}
+
+variables:
+  context: "Enter the context."
+  question: "Enter the question."

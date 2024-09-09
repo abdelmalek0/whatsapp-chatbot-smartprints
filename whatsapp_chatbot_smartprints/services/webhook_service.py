@@ -1,6 +1,7 @@
 import httpx
 from langchain_core.messages import SystemMessage
 from threading import Thread
+from utility import load_template
 
 class WebhookService:
     def __init__(self, graph_api_token, llm_service):
@@ -39,7 +40,9 @@ class WebhookService:
         )
 
     def reply_using_llm(self, business_phone_number_id, to, body, replied_to=None):
-        chat_history = self.messages.get(to, [SystemMessage(content=self.load_default_message())]).copy()
+        chat_history = self.messages.get(to, 
+                                         [SystemMessage(content=load_template('system'))]
+                                         ).copy()
         print(f'chat_history: {len(chat_history)}')
         llm_response, updated_chat_history = self.llm_service.generate_response(chat_history, body)
         
@@ -66,8 +69,3 @@ class WebhookService:
             data['context'] = {"message_id": replied_to}
         
         httpx.post(url, headers=headers, json=data)
-
-    @staticmethod
-    def load_default_message():
-        with open('agent.txt', 'r') as file:
-            return file.read()
