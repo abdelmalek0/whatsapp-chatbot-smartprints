@@ -16,8 +16,10 @@ from langchain_community.embeddings.ollama import OllamaEmbeddings
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.prompts import ChatPromptTemplate, HumanMessagePromptTemplate
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.document_loaders import WebBaseLoader, SitemapLoader
-
+from langchain_community.document_loaders import WebBaseLoader, SitemapLoader, TextLoader
+import asyncio
+from langchain_core.documents import Document
+from typing import List
 
 app = Flask(__name__)
 CORS(app)
@@ -37,22 +39,26 @@ messages = {}
 
 def indexing(chroma_db: Chroma):
     print('Indexing files into the database ...')
-    doc_loader = WebBaseLoader(
-        web_paths=("https://fkorteby.github.io/smartprins-docs/",),
-    )
+    documents: List[Document] = []
+    for index, file in enumerate(os.listdir("./docs/")):
+        filpath = os.path.join("./docs/", file)
+        document_loader = TextLoader(filpath, encoding='utf-8')
+        docs = document_loader.load()
+        documents.extend(docs)
     
-    sitemap_loader = SitemapLoader(
-        web_path="https://smartprints-ksa.com/sitemap.xml",
-    )
-    
-    all_documents = doc_loader.load() + sitemap_loader.load()
-    # Add texts and metadata to the collection
-    chroma_db.add_documents(documents=text_splitter.split_documents(all_documents))
+    texts = []
+    for doc in documents:
+        texts.extend(doc.page_content.split('$$$$$$$$$$$$$$$$'))
+
+    try:
+        chroma_db.add_texts(texts, ids=[f'{idx}' for idx in range(len(texts))]);
+    except Exception as e:
+        print(e)
     print('Indexing files into the database: 🟩 Finished')
 
 
-MODEL_NAME = 'llama3.1'
-EMBED_MODEL_NAME = 'nomic-embed-text'
+MODEL_NAME = 'llama3.1' #'llama3.1' #'gemma2:latest'
+EMBED_MODEL_NAME = 'mxbai-embed-large:latest'
 CHROMA_DB = './chromadb/'
 COLLECTION_NAME = 'smartprints'
 # RAG prompt
@@ -150,7 +156,7 @@ def webhook():
 def reply_using_llm(business_phone_number_id: str, to: str, body: list, replied_to = None):
     chat_history  = messages.get(to, DEFAULT_MSSG).copy()
     new_message = HumanMessagePromptTemplate.from_template(human_message_template)
-    new_message_formatted = new_message.format(context=chroma.as_retriever().invoke(body),
+    new_message_formatted = new_message.format(context=chroma.as_retriever(search_kwargs={'k': 7}).invoke(body),
                                        question=body)
     chat_history.append(new_message_formatted)
     
@@ -180,10 +186,10 @@ def home():
     return "<pre>Nothing to see here.\nCheckout README.md to start.</pre>"
 
 if __name__ == '__main__':
-    
-    if not os.path.exists(CHROMA_DB):
+    # Thread(target=indexing, args=[chroma,]).start()
+    if not os.path.exists(CHROMA_DB) and COLLECTION_NAME not in [collection.name for collection in chroma._client.list_collections()]:
         Thread(target=indexing, args=[chroma,]).start()
     else:
         print('Database is already set up!')
     
-    app.run(port=PORT)
+    app.run(port=PORT, debug=True)

@@ -1,0 +1,460 @@
+# Company Overview
+
+**Name:** Smart Prints
+
+**Location:** Riyadh, Saudi Arabia
+
+**Focus:** Software Development and Self-Service Solutions
+
+**Vision:** We believe that Artificial Intelligence and machine promise can create a vastly productive and efficient economy. Through our AI-based solutions, we can manage to narrow the gap between humans and machines by emerging new technologies. With dedicated teams led by experts, we’re able to apply AI to solve real-world business problems by integrating human and machine work.
+
+**Mission:** To offer everyone a chance to benefit from the latest technologies to run businesses with ease, achieve growth, and improve customer experience with substantial savings on business operations costs. Through that, businesses can be assured every customer experience will have a smart print.
+
+$$$$$$$$$$$$$$$$
+# Company Overview
+## Introduction
+
+Smart Prints is an innovative software development startup based in Riyadh, Saudi Arabia. Established with a bold vision to transform business operations across multiple industries, Smart Prints has rapidly positioned itself as a leader in self-service and automation solutions. Our startup was born out of a deep understanding of the operational inefficiencies that many businesses face today, particularly in fast-paced sectors like retail, hospitality, and food service. These challenges inspired us to develop innovative technologies that not only streamline operations but also elevate the overall customer experience.
+
+Since our inception, we have been driven by a relentless pursuit of excellence, constantly pushing the boundaries of what’s possible with technology. Our expertise lies in creating tailored, high-performance software solutions that integrate seamlessly into existing workflows, allowing businesses to operate more efficiently and with greater accuracy. Whether it’s automating customer interactions, enhancing inventory management, or simplifying complex processes, Smart Prints is committed to delivering solutions that make a tangible difference.
+
+Our strength comes from our ability to combine advanced technology with practical application, ensuring that every solution we offer is both innovative and grounded in the realities of day-to-day business operations. By prioritizing user-friendly designs and reliable functionality, we ensure that our clients not only adopt our solutions but also see measurable improvements in their operations.
+
+At Smart Prints, we believe that the future of business lies in intelligent automation. By eliminating manual errors, reducing operational costs, and improving service quality, our solutions empower businesses to focus on what truly matters—their growth and their customers. As we continue to expand our footprint across various industries, our commitment to innovation and excellence remains at the core of everything we do.
+
+Whether you’re a retail chain looking to enhance your customer service through self-order kiosks or a restaurant aiming to optimize back-end operations, Smart Prints is here to partner with you on your journey toward operational excellence and business success.
+
+$$$$$$$$$$$$$$$$
+## Introduction
+### Mission and Vision
+
+Smart Prints was established to address the pressing challenges faced by businesses today, such as market fluctuations, rising labor costs, quality control issues, and the need for cost-effective operations. The company’s mission is to leverage cutting-edge research and development, technology, and business intelligence to transform these challenges into opportunities. By doing so, Smart Prints aims to simplify business processes, boost operational efficiency, and significantly enhance customer experiences.
+
+$$$$$$$$$$$$$$$$
+## Introduction
+### Team and Expertise
+
+Smart Prints boasts a team with over 40 years of collective experience across various sectors, including FMCG, F&B, import/export, manufacturing, and software development. The team’s diverse expertise covers project management, consulting, applications architecture, and change management. This wealth of experience ensures that Smart Prints can deliver high-quality, scalable solutions to its clients.
+
+Our team brings together over 40 years of combined experience across various industries, including FMCG, F&B, import/export, manufacturing, and software development. With backgrounds in multinational companies, semi-government entities, and international chains, our team members have held key roles in project management, general management, consulting, and application architecture. This diverse expertise enables us to design innovative solutions, draft new policies, and implement large-scale applications that drive business success. Our commitment to continuous learning and adaptation ensures that we remain at the forefront of technological advancements.
+
+$$$$$$$$$$$$$$$$
+## Introduction
+### Certification and Partners
+
+Smart Prints is recognized as a Certified Merchant Services Provider by Saudi Payments/Saudi Central Bank. The company has also established strong partnerships with industry leaders, enabling it to offer reliable and secure services.
+
+$$$$$$$$$$$$$$$$
+## Introduction
+### Commitment to Clients
+
+Smart Prints is dedicated to providing exceptional support and service to its clients. The company offers multiple levels of technical support, including off-site, on-site, and developer support, ensuring that clients receive the assistance they need to maximize the benefits of their Smart Prints solutions.
+
+$$$$$$$$$$$$$$$$
+# Company Overview
+## Technical Support Structure
+
+- **Off-Site Support:** Remote assistance.
+- **On-Site Support:** On-location service.
+- **Developer Support:** Technical assistance from the development team.
+
+$$$$$$$$$$$$$$$$
+# Company Overview
+## Contact Information
+
+**Address:** 2930 Northern Ring Road, Al Wadi Dist., Riyadh 13313 - 6137, KSA.
+
+**Phone:** +966 552-385-990 / +966-543-694-064
+
+**Website:** [http://www.smartprints-ksa.com](http://www.smartprints-ksa.com)
+
+$$$$$$$$$$$$$$$$
+
+# Products & Services
+- Hardware
+- Software
+
+$$$$$$$$$$$$$$$$
+# Products & Services
+## Hardware Specifications
+- Kiosk
+- Screen Panel
+- Thermal Printer
+- 2D Scanner
+- Card Reader
+- Others
+
+$$$$$$$$$$$$$$$$
+## Hardware Specifications
+### Kiosk Specifications
+**CPU:**
+
+- Rockchip RK3588 (64-bit CPU, 2.0GHz) Quad-core Cortex-A76 and quad-core Cortex-A55 with Android 12 operating system.
+- Rockchip RK3568 Quad-Core ARM Cortex-A55, up to 2.0GHz with Android 11 operating system.
+- Rockchip RK3399 (64-bit CPU, 2.0GHz) Dual-core ARM Cortex-A72 with Android 10 operating system.
+- Intel Celeron J6412@2.00GHz with Windows 11 IoT Enterprise LTSC.
+- Intel® Core™ i3-10110U with Windows 11 IoT Enterprise LTSC.
+
+**RAM:** 4GB (optional 8GB)
+
+**ROM:** 16GB (optional 32GB/64GB)
+
+**Serial Ports:** 4 serial ports (2 TTL + 2 RS232)
+
+**USB:** 2 USB 2.0 HOST ports, 1 USB-C OTG port
+
+**HDMI Output:** Supports 1080P@120Hz and 4Kx2K@60Hz output
+
+**Ethernet:** 10M/100M self-adapting Ethernet port
+
+**Wi-Fi:** Built-in Wi-Fi
+
+**Bluetooth (Optional):** Bluetooth 4.0 (standard configuration)
+
+**3G/4G (Optional):** Built-in PCI-E interface for 3G/4G networks and voice calls
+
+**Video Format Support:** Supports WMV, AVI, FLV, RM, RMVB, MPEG, TS, MP4, etc.
+
+**Image Format Support:** Supports BMP, JPEG, PNG, GIF
+
+**Other Ports:** Earphone Output, SD Card Slot
+
+$$$$$$$$$$$$$$$$
+## Hardware Specifications
+### Screen Panel Specifications
+
+- **Screen Size Options:** 21”, 24”, 27”, 32”
+- **Contrast Ratio:** 3000:1
+- **Brightness:** 400 cd/m²
+- **Resolution:** 1920 x 1080
+- **Response Time:** 8 ms
+- **Viewing Angle:** 178° horizontal/178° vertical
+- **Touch Screen:** 10-point capacitive touch screen with 87±2% transparency
+
+$$$$$$$$$$$$$$$$
+## Hardware Specifications
+### Thermal Printer
+
+- **Printing Speed:** 90 mm/s
+- **Resolution:** 203 dpi (8 dots/mm)
+- **Printing Width:** 80 mm
+- **Interface:** RS232/USB
+- **Cutting Method:** Partial Cut/Full Cut
+- **Power Supply:** DC 12V 2A
+- **Emulation:** ESC/POS
+- **Driver Compatibility:** Windows 98/2000/NT/XP/Vista/Win7/Win8/Linux
+
+$$$$$$$$$$$$$$$$
+## Hardware Specifications
+### 2D Scanner
+
+- **System Interface:** USB, RS232
+- **Light Source:** White LED
+- **Scanning Angle:** Roll/Pitch/Yaw: 360° / ±65° / ±60°
+- **Print Contrast:** 25% minimum reflective difference
+- **Minimum Resolution:** ≥5 mil
+- **Field of View:** 67.7° horizontal x 53.4° vertical
+- **Parameter Setting Mode:** QR code scan or host command settings
+- **Dimensions:** 65mm x 61mm x 33mm
+- **Voltage:** 5V DC
+- **Current:** 360 mA (Max)
+
+**Types of Decoding:**
+
+1D: Code 128, EAN-13, EAN-8, Code 39, UPC-A, UPC-E, Codabar, Interleaved 2 of 5, ITF-6, ITF-14, ISBN, Code 93, UCC/EAN-128, GS1 Databar, Matrix 2 of 5, Code 11, Industrial 2 of 5, Standard 2 of 5, Plessey, MSI-Plessey
+
+2D: PDF417, MicroPDF417, Data Matrix, Maxicode, QR code, Micro QR, Aztec, GM
+
+$$$$$$$$$$$$$$$$
+## Hardware Specifications
+### Card Reader
+
+- **NFC Card Reader:** Model M13
+- **RFID (Optional)**
+- **MSR (Optional)**
+
+$$$$$$$$$$$$$$$$
+## Hardware Specifications
+### Other Specifications
+
+- **Speakers:** 10W x 2 Active Loudspeakers
+- **Operating Temperature:** 0 ~ 40℃ (32 ~ 104℉)
+- **Storage Temperature:** 10 ~ 95% @ 40℃
+- **Power Input:** AC 100-240V
+- **Dimensions (W x H x D):** 900mm x 450mm x 180mm
+- **Weight:** 21 kg
+- **Floor Stand:** without or with stationary table (Optional)
+
+$$$$$$$$$$$$$$$$
+# Products & Services
+## Software Solutions and Services
+- Restaurant Solutions
+- Retail Solutions
+- Hospitality Solutions
+- Apparel Shop Solutions
+- Innovative AI-Based Solutions
+
+$$$$$$$$$$$$$$$$
+## Software Solutions and Services
+### Restaurant Solutions
+- Smart Kiosk
+- Smart Waiter
+- Smart Restaurant POS
+- Smart Menu
+- Smart WhatsApp
+
+$$$$$$$$$$$$$$$$
+### Restaurant Solutions
+#### Smart Kiosk
+
+**Description:**  
+Smart Kiosk is an innovative self-ordering service that aims to transform the way customers engage with restaurants by allowing them to place orders and pay without the assistance of a cashier. This service speeds up the ordering process, decreases wait times, and improves the overall customer experience. The Smart Kiosk is suitable for a wide range of dining spaces, including fast food outlets, dine-in restaurants, and coffee shops, catering to the modern customer base that values convenience, speed, and minimal contact. This solution empowers customers by providing them more control over their ordering experiences while enabling restaurants to operate more efficiently, reduce labor costs, and improve order accuracy.
+
+**Components:**
+
+- **Front-Office Application:**  
+  The front-office is the Smart Kiosk's user-friendly interface. It is an interactive self-service application with a multi-touch screen system that accepts both touch and voice inputs for an enhanced ordering experience. Customers can browse the menu, modify their purchases, select add-ons, and make payments seamlessly. The application is written in Java and optimized for Android devices, ensuring compatibility with various kiosk hardware.
+
+- **Back-Office Application:**  
+  The back-office application is a cloud-based administration management system that allows restaurant managers to manage data with real-time access to multiple parts of their operation. Through an intuitive web interface, they can easily update menus to reflect seasonal changes, promotions, or new items. The system also facilitates effective management of inventory and product details, ensuring that the menu accurately reflects available stock. It supports data export for integration with financial systems, aiding in accurate reporting and analysis, streamlining operations, and ensuring financial compliance.
+
+- **Kitchen Application:**  
+  The kitchen application links the front-of-house ordering system (customers) with the kitchen staff, providing real-time kiosk orders displayed on a digital screen for easy tracking. It ensures that every order placed through the kiosk is promptly communicated to the kitchen, minimizing the risk of missed or delayed orders. Kitchen staff can view order details, prioritize preparations, and track the status of orders from preparation to delivery. This real-time synchronization with the kiosk boosts operational efficiency, shortens preparation times, and reduces errors, leading to faster service, better food quality, and a more organized workflow, ultimately enhancing customer satisfaction.
+
+- **Smart Automation Integration:**  
+  Smart Automation Integration seamlessly connects the Smart Kiosk with the restaurant's existing Point of Sale (POS) system, ensuring that all orders are automatically recorded and processed. This integration eliminates the need for manual data entry, reducing errors and allowing staff to focus on other aspects of customer service.
+
+$$$$$$$$$$$$$$$$
+### Restaurant Solutions
+#### Smart Waiter
+
+**Description:**  
+The Smart Waiter is a modern attended checkout system seamlessly integrated with a comprehensive Point of Sale (POS) platform. It solves the transactional and operational needs of businesses in the food and beverage (F&B), fast-moving consumer goods (FMCG), and retail sectors. This solution is intended to streamline the checkout process, improve customer service, and optimize business operations by combining front-office efficiency, back-office administration, and customer relationship tools. It brings together many activities such as order administration, inventory management, and client contacts into a single, coherent system.
+
+**Components:**
+
+- **Front-Office Application:**  
+  The front-office system has a dynamic, user-friendly interface that allows cashiers to quickly and effectively handle customer orders and payments using a multi-touch screen. It accepts a variety of payment options, including cash, credit cards, mobile payments, and digital wallets, enabling a seamless checkout process for all clients. The application has an easy structure that reduces training time for new employees and minimizes errors during transactions. Additionally, it can present promotional offers and upsell ideas to improve sales possibilities and revenue. The multi-touch capabilities also enable quicker browsing through menus and products, speeding up the checkout process, especially during peak hours.
+
+- **Back-Office Application:**  
+  The back-office application is a cloud-based management tool that gives users complete control over all parts of their organization. Managers can use this tool to easily manage data relating to menus, products, clients, vendors, inventories, and accounting from a single dashboard. The system's cloud-based architecture guarantees real-time data synchronization across all terminals and devices, allowing for up-to-date information on stock levels, sales, and finances. This application also enables the creation of thorough reports and analytics to help with decision-making, inventory optimization, and financial planning. By automating many of the regular processes connected with corporate management, the back-office program allows employees to dedicate more time to customer care and strategic development.
+
+- **Kitchen Application:**  
+  A kitchen display system for monitoring and controlling orders.
+
+- **CRM:**  
+  The Smart Waiter's Customer Relationship Management (CRM) component is intended to assist organizations in managing and improving their client interactions. This system tracks customer orders, invoices, and activity histories, allowing for customized advertising and better customer support. It can help identify high-value clients, track purchase habits, and support loyalty programs that encourage customers to return.
+
+- **ERP Integration Service:**  
+  The ERP Integration Service provides specialized assistance in integrating the Smart Waiter's POS system with the company's existing Enterprise Resource Planning (ERP) software. This solution guarantees that data flows smoothly between the POS and ERP systems, allowing for real-time updates on sales, inventory, customer information, and financial activities. It reduces the need for manual data entry and the risk of errors, hence improving overall operational efficiency.
+
+$$$$$$$$$$$$$$$$
+### Restaurant Solutions
+#### Smart Restaurant POS
+
+**Description:**  
+The Smart POS (Point of Sale) is an advanced automated checkout system that manages a store’s entire supply chain, from vendors to customers, resulting in a smooth and effective operational process. This solution, which is fully connected with other Smart Prints products, brings all transactional and inventory management processes together on a single, unified platform. Smart POS is designed for a wide range of retail contexts, including supermarkets, specialized stores, and convenience stores. By automating inventory management, vendor coordination, and customer transactions, Smart POS improves operational efficiency, decreases manual errors, and allows for better decision-making through real-time data insights.
+
+**Components:**
+
+- **Front-Office Application:**  
+  The front-office application is the Smart POS's customer-facing interface, with a multi-touch screen that allows for speedy and accurate consumer checkouts. The interface accepts a variety of payment options, including cash, credit cards, digital wallets, and mobile payments, assuring a seamless checkout procedure. The program is intended to be intuitive, lowering training time for new employees and reducing the possibility of transaction errors. It can also display promotional content, provide cross-selling suggestions, and integrate loyalty programs, all of which increase customer engagement and income.
+
+- **Back-Office Application:**  
+  The back-office application provides a comprehensive management suite, allowing businesses to manage every aspect of their operations, such as menus, products, vendors, inventory, and accounting data. This cloud-based technology synchronizes data in real time across different terminals, guaranteeing that managers have current information for inventory management, sales tracking, and financial reporting. The system also features extensive analytics tools that provide thorough data, allowing organizations to discover patterns, optimize stock levels, and make educated strategic decisions. Its adaptable architecture enables integration with third-party programs, hence enhancing its capabilities.
+
+- **CRM:**  
+  The CRM component provides a comprehensive overview of client activity, allowing for more effective client management. It monitors consumer purchase histories, preferences, and interactions, allowing firms to tailor marketing campaigns, generate targeted promotions, and increase customer retention. By connecting with communication technologies like email and SMS, the CRM allows businesses to interact with clients across numerous channels, building loyalty and increasing repeat business. The CRM also enables loyalty programs, customer feedback management, and data-driven marketing initiatives, ensuring a comprehensive approach to customer interaction.
+
+- **ERP Integration:**  
+  The ERP (Enterprise Resource Planning) Integration component allows for extensive integration of the Smart POS with existing ERP systems, resulting in seamless data flow across business units. This connectivity enables real-time updates on inventory, sales, customer data, and financial transactions, eliminating the need for manual data entry and reducing errors. Businesses can increase operational coherence, resource allocation, and overall efficiency by integrating the POS system with the larger company management framework.
+
+$$$$$$$$$$$$$$$$
+### Restaurant Solutions
+#### Smart Menu
+
+**Description:**  
+An online ordering service that allows customers to order and pay online for delivery, pickup, or dine-in. It’s designed to automate the ordering process for restaurants.
+
+**Components:**
+
+- **Web Mobile Application:** Customers can browse the menu, place orders, and make payments using any mobile device.
+- **Back-Office Application:** Cloud-based management for customizing menus and managing products.
+- **Kitchen Application:** Real-time order monitoring and control for kitchen staff.
+- **Smart Automation Integration:** Seamlessly integrates with existing POS software for efficient order processing.
+
+$$$$$$$$$$$$$$$$
+### Restaurant Solutions
+#### Smart WhatsApp
+
+**Description:**  
+An AI-powered automated software that allows customers to place orders and interact with the business via WhatsApp.
+
+**Components:**
+
+- **WhatsApp ChatBot:** AI-based, multilingual chatbot for taking orders and payments through WhatsApp.
+- **Back-Office Application:** Manage data, menus, and accounting through a cloud-based interface.
+- **Kitchen Application:** Real-time order monitoring and control.
+- **Smart Automation Integration:** Integrates with existing POS systems to streamline order processing.
+
+$$$$$$$$$$$$$$$$
+## Software Solutions and Services
+### Retail Solutions
+- Smart Retail
+- Smart Scale
+- Smart Retail POS
+- Smart Grocery
+
+$$$$$$$$$$$$$$$$
+### Retail Solutions
+#### Smart Retail
+
+**Description:**  
+A self-checkout solution for retail environments like supermarkets, grocery stores, and department stores, allowing customers to check out without the need for a cashier.
+
+**Components:**
+
+- **Front-Office Application:** A touch screen self-checkout system that displays order details and accepts payments by card or mobile.
+- **Back-Office Application:** Cloud-based management for data, product, and menu customization.
+- **ERP/POS Integration Service:** Professional services for integrating the system with existing ERP/POS systems.
+
+$$$$$$$$$$$$$$$$
+### Retail Solutions
+#### Smart Scale
+
+**Description:**  
+A self-service or operator-assisted AI-powered weighing scale that identifies items automatically using a built-in camera.
+
+**Components:**
+
+- **Front-Office Application:** An AI-powered touch screen scale for automatic product recognition and labeling.
+- **Back-Office Application:** Cloud-based category and product management, along with tracking via a dashboard.
+- **ERP/POS Integration Service:** Professional services for integrating the scale with existing ERP/POS systems.
+
+$$$$$$$$$$$$$$$$
+### Retail Solutions
+#### Smart Retail POS
+
+**Description:**  
+A comprehensive POS system designed for retail environments, managing the entire supply chain from vendors to customers.
+
+**Components:**
+
+- **Front-Office Application:** Manages customer checkout with a multi-touch screen interface.
+- **Back-Office Application:** Provides extensive management capabilities for products, inventory, and accounting.
+- **Vendors Dashboard (Optional):** Allows vendors to monitor the consumption of their products through a web-based application.
+- **ERP Integration Service:** Professional services for integrating the POS with existing ERP systems.
+
+$$$$$$$$$$$$$$$$
+### Retail Solutions
+#### Smart Grocery
+
+**Description:**  
+An online ordering service tailored for grocery stores, allowing customers to order and pay online for various shopping needs.
+
+**Components:**
+
+- **Web Mobile Application:** Customers can browse products, place orders, and make payments via mobile devices using a QR code.
+- **Back-Office Application:** Cloud-based management for products and accounting data.
+- **ERP/POS Integration Service:** Professional services for integrating the system with existing ERP/POS software.
+
+$$$$$$$$$$$$$$$$
+## Software Solutions and Services
+### Apparel Shop Solutions
+- Self-Checkout Solution
+
+$$$$$$$$$$$$$$$$
+### Apparel Shop Solutions
+#### Self-Checkout Solution
+
+**Description:**  
+An RFID-based self-checkout solution that allows customers to scan and pay for items without assistance from a cashier. Targeted at apparel and garment stores, as well as electronic and department stores.
+
+**Components:**
+
+- **Front-Office Application:** A self-checkout system with RFID technology for scanning goods and a smart touch screen for payment.
+- **Back-Office Application:** Cloud-based management for data, products, and accounting.
+- **ERP/POS Integration Service:** Integration services for connecting the system with existing ERP/POS solutions.
+- **RFID Security Gateway:** Anti-theft security system that detects unpaid items.
+
+$$$$$$$$$$$$$$$$
+## Software Solutions and Services
+### Hospitality Solutions
+- Smart Hotel
+
+$$$$$$$$$$$$$$$$
+### Hospitality Solutions
+#### Smart Hotel
+
+**Description:**  
+A comprehensive hotel management system that automates check-in, room service, and check-out processes to enhance guest experiences.
+
+**Components:**
+
+- **Kiosk Check-In Application:** A multi-touch screen system for guests to manage reservations and complete the check-in process.
+- **Back-Office Application:** Cloud-based management for guest reservations and customization of services.
+- **Smart Room Mobile Web Application:** QR-based mobile application enabling guests to manage their stay, communicate with staff, and order services.
+- **ERP/POS Integration Service:** Professional services for integrating the system with existing ERP/POS systems.
+
+$$$$$$$$$$$$$$$$
+## Software Solutions and Services
+### Innovative AI-Based Solutions
+- Smart Quality Control
+- Middleware & Integration
+- Smart Demand
+- Smart Control
+- Behavior Compliance Analysis
+
+$$$$$$$$$$$$$$$$
+### Innovative AI-Based Solutions
+#### Smart Quality Control
+
+**Description:**  
+An AI-powered quality assurance system for production lines that sorts defective products using cameras and machine learning.
+
+**Use Cases:**
+
+- **Pizza Quality Control:** Ensures pizza quality in restaurants by identifying issues like missing toppings or uneven cooking.
+
+$$$$$$$$$$$$$$$$
+### Innovative AI-Based Solutions
+#### Middleware & Integration
+
+**Description:**  
+A central software and cloud service that orchestrates and integrates different systems, ensuring smooth business operations and data quality.
+
+**Applications:**  
+Supports multi-cloud and containerized environments for scalable application development and deployment.
+
+$$$$$$$$$$$$$$$$
+### Innovative AI-Based Solutions
+#### Smart Demand
+
+**Description:**  
+An automated demand planning service that uses AI to predict and manage supply needs based on real-time stock data.
+
+**Components:**
+
+- **Central Dashboard:** Cloud-based management of categories and products with advanced reporting.
+- **Smart Tracker/Integrator:** Uses OCR technology to read real-time orders and generate consumption reports.
+
+$$$$$$$$$$$$$$$$
+### Innovative AI-Based Solutions
+#### Smart Control
+
+**Description:**  
+An innovative system for monitoring food preparation and waste, using AI scales with built-in cameras for accurate recognition and tracking.
+
+**Modules:**
+
+- **Preparation Control:** Automates food preparation and records quantities for accurate labeling.
+- **Waste Management:** Tracks discarded items, recording weight, time, and responsible personnel.
+
+$$$$$$$$$$$$$$$$
+### Innovative AI-Based Solutions
+#### Behavior Compliance Analysis
+
+**Description:**  
+An anti-theft solution that uses deep learning to detect suspicious gestures and prevent theft in real-time, leveraging existing CCTV infrastructure.
+
+$$$$$$$$$$$$$$$$
