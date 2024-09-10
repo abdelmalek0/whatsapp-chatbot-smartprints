@@ -1,6 +1,6 @@
 from langchain_community.chat_models import ChatOllama
 from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
-from langchain_core.output_parsers import StrOutputParser
+from langchain_core.output_parsers import StrOutputParser, NumberedListOutputParser
 from langchain_core.prompts import ChatPromptTemplate, HumanMessagePromptTemplate
 from utility import load_template
 
@@ -9,6 +9,16 @@ class LLMService:
         self.llm = ChatOllama(model=model_name, temperature=0.0)
         self.chroma_service = chroma_service
         self.rag_chain = self.llm | StrOutputParser()
+        self.topic_extractor = (
+            ChatPromptTemplate.from_template(template=load_template('topic'))
+            | self.llm 
+            | NumberedListOutputParser()
+        )
+        self.summarizer = (
+            ChatPromptTemplate.from_template(template=load_template('summary'))
+            | self.llm  
+            | StrOutputParser()
+        )
 
     def generate_response(self, chat_history, query):
         context = self.chroma_service.retrieve(query)

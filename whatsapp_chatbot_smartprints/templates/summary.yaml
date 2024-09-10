@@ -1,0 +1,14 @@
+prompt: |
+  Summarize the text following this guideline:
+  - Keep the summary concise with a minimum of one sentence and a maximum of 3 sentences
+  - For lists, use "contains" in a brief paragraph
+  - Start directly with summary content
+  - Omit phrases like "Here is the summary" or "This text contains"
+  - Include only information present in the original text
+  - Do not add any details or interpretations not explicitly stated
+
+  Text:
+  {content}
+
+variables:
+  content: "Enter your text here."

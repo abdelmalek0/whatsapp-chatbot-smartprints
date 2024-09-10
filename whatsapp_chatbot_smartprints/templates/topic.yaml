@@ -1,0 +1,9 @@
+prompt: |
+  Extract the main topic of the following text. 
+  Write it as an item in an ordered list.
+
+  Text:
+  {content}
+
+variables:
+  content: "Enter your text here."

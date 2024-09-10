@@ -22,18 +22,25 @@ def create_app(config_class=Config):
         embedding_model_name=app.config['EMBED_MODEL_NAME']
     )
 
-    # Thread(target=chroma_service.index_files).start()
-    if not os.path.exists(app.config['CHROMA_DB']) and \
-        app.config['COLLECTION_NAME'] not in [collection.name \
-                for collection in chroma_service.chroma._client.list_collections()]:
-        Thread(target=chroma_service.index_files).start()
-    else:
-        print('Database is already set up!')
-
     llm_service = LLMService(
         model_name=app.config['MODEL_NAME'],
         chroma_service=chroma_service
     )
+
+    Thread(
+        target=chroma_service.index_files, 
+        args=[llm_service.summarizer]
+        ).start()
+    # if not os.path.exists(app.config['CHROMA_DB']) and \
+    #     app.config['COLLECTION_NAME'] not in [collection.name \
+    #             for collection in chroma_service.chroma._client.list_collections()]:
+    #     Thread(
+    #         target=chroma_service.index_files, 
+    #         args=[llm_service.topic_extractor]
+    #         ).start()
+    # else:
+    #     print('Database is already set up!')
+
     webhook_service = WebhookService(
         graph_api_token=app.config['GRAPH_API_TOKEN'],
         llm_service=llm_service
