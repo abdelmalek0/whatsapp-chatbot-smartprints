@@ -24,24 +24,24 @@ class LLMService:
         context = self.chroma_service.retrieve(query)
         new_message = HumanMessagePromptTemplate.from_template(load_template('chat'))
         new_message_formatted = new_message.format(
-            history=self.format_history(chat_history[1:]), 
-            context=context, 
+            history=self._format_history(chat_history[1:]), 
+            context=self._format_context(context), 
             question=query
             )
-        # print('#'*50)
+        print('#'*50)
         # print(self.format_history(chat_history[1:]))
         chat_history.append(HumanMessage(content=query))
         
         llm_response = self.rag_chain.invoke(chat_history[:-1] + [new_message_formatted])
-        # print('&'*50)
-        # print(new_message_formatted.content)
-        # print('&'*50)
+        print('&'*50)
+        print(new_message_formatted.content)
+        print('&'*50)
         # print(llm_response)
         # print('*'*50)
         chat_history.append(AIMessage(content=llm_response))
         return llm_response, chat_history
     
-    def format_history(self, history):
+    def _format_history(self, history):
         formatted_history = ""
         for message in history:
             if type(message) == HumanMessage:
@@ -49,3 +49,9 @@ class LLMService:
             elif type(message) == AIMessage:
                 formatted_history += f'\nAI: {message.content}'
         return formatted_history
+    
+    def _format_context(self, context):
+        formatted_context = ''
+        for index, doc in enumerate(context):
+            formatted_context += f'\nDocument {index + 1}: \"{doc.page_content}\"'
+        return formatted_context
