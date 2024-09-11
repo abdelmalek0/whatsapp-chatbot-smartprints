@@ -6,8 +6,9 @@ from utility import load_template
 RESET_KEYWORD = '/reset'
 
 class WebhookService:
-    def __init__(self, graph_api_token, llm_service):
+    def __init__(self, graph_api_token, verify_token, llm_service):
         self.graph_api_token = graph_api_token
+        self.verify_token = verify_token
         self.llm_service = llm_service
         self.messages = {}
 

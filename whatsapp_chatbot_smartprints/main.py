@@ -43,6 +43,7 @@ def create_app(config_class=Config):
 
     webhook_service = WebhookService(
         graph_api_token=app.config['GRAPH_API_TOKEN'],
+        verify_token=app.config['WEBHOOK_VERIFY_TOKEN'],
         llm_service=llm_service
     )
 
