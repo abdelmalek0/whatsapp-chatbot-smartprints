@@ -27,19 +27,19 @@ def create_app(config_class=Config):
         chroma_service=chroma_service
     )
 
-    Thread(
-        target=chroma_service.index_files, 
-        args=[llm_service.summarizer]
+    # Thread(
+    #     target=chroma_service.index_files, 
+    #     args=[llm_service.summarizer]
+    #     ).start()
+    if not os.path.exists(app.config['CHROMA_DB']) and \
+        app.config['COLLECTION_NAME'] not in [collection.name \
+                for collection in chroma_service.chroma._client.list_collections()]:
+        Thread(
+            target=chroma_service.index_files, 
+            args=[llm_service.summarizer]
         ).start()
-    # if not os.path.exists(app.config['CHROMA_DB']) and \
-    #     app.config['COLLECTION_NAME'] not in [collection.name \
-    #             for collection in chroma_service.chroma._client.list_collections()]:
-    #     Thread(
-    #         target=chroma_service.index_files, 
-    #         args=[llm_service.topic_extractor]
-    #         ).start()
-    # else:
-    #     print('Database is already set up!')
+    else:
+        print('Database is already set up!')
 
     webhook_service = WebhookService(
         graph_api_token=app.config['GRAPH_API_TOKEN'],

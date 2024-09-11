@@ -3,6 +3,8 @@ from langchain_core.messages import SystemMessage
 from threading import Thread
 from utility import load_template
 
+RESET_KEYWORD = '/reset'
+
 class WebhookService:
     def __init__(self, graph_api_token, llm_service):
         self.graph_api_token = graph_api_token
@@ -19,12 +21,15 @@ class WebhookService:
             
             print(f"You received a message from {message['from']} saying:\n{message['text']['body']}")
             
-            Thread(target=self.reply_using_llm, 
-                   args=[business_phone_number_id, 
-                         message['from'], 
-                         message['text']['body'], 
-                         message['id']]
-            ).start()
+            if message['text']['body'].strip() == RESET_KEYWORD:
+                self.messages = {}
+            else:
+                Thread(target=self.reply_using_llm, 
+                    args=[business_phone_number_id, 
+                            message['from'], 
+                            message['text']['body'], 
+                            message['id']]
+                ).start()
         
         return '', 200
 
@@ -43,11 +48,10 @@ class WebhookService:
         chat_history = self.messages.get(to, 
                                          [SystemMessage(content=load_template('system'))]
                                          ).copy()
-        print(f'chat_history: {len(chat_history)}')
+        
         llm_response, updated_chat_history = self.llm_service.generate_response(chat_history, body)
         
         self.messages[to] = updated_chat_history
-        print(llm_response)
         
         self.send_message(business_phone_number_id, to, llm_response, replied_to)
 
