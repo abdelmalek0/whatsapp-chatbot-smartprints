@@ -3,6 +3,7 @@ from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
 from langchain_core.output_parsers import StrOutputParser, NumberedListOutputParser
 from langchain_core.prompts import ChatPromptTemplate, HumanMessagePromptTemplate
 from utility import load_template
+from icecream import ic
 
 class LLMService:
     def __init__(self, model_name, chroma_service):
@@ -19,39 +20,55 @@ class LLMService:
             | self.llm  
             | StrOutputParser()
         )
+        self.query_translator = (
+            ChatPromptTemplate.from_template(load_template('query_translation'))
+            | self.llm
+            | StrOutputParser()
+        )
 
     def generate_response(self, chat_history, query):
-        context = self.chroma_service.retrieve(query)
+        
         new_message = HumanMessagePromptTemplate.from_template(load_template('chat'))
+        ic(chat_history[1:])
+        # translated_query = self.query_translator.invoke({
+        #     'history': self._format_history(chat_history[-2:]),
+        #     'message': query
+        #     }
+        # )
+        translated_query = str(query)
+        context = self.chroma_service.retrieve(translated_query, score_threshold=.7, k=5)
+        
         new_message_formatted = new_message.format(
             history=self._format_history(chat_history[1:]), 
             context=self._format_context(context), 
-            question=query
+            message=translated_query
             )
-        print('#'*50)
-        # print(self.format_history(chat_history[1:]))
-        chat_history.append(HumanMessage(content=query))
         
-        llm_response = self.rag_chain.invoke(chat_history[:-1] + [new_message_formatted])
-        print('&'*50)
-        print(new_message_formatted.content)
-        print('&'*50)
-        # print(llm_response)
-        # print('*'*50)
+        ic(translated_query)
+        if len(chat_history) > 3:
+            llm_response = self.rag_chain.invoke(chat_history[:1] + chat_history[-2:] + [new_message_formatted])
+        else:
+            llm_response = self.rag_chain.invoke(chat_history[:1] + [new_message_formatted])
+        
+        # ic(new_message_formatted.content)
+        ic(llm_response)
+
+        chat_history.append(HumanMessage(content=translated_query))
         chat_history.append(AIMessage(content=llm_response))
+
         return llm_response, chat_history
     
     def _format_history(self, history):
         formatted_history = ""
         for message in history:
             if type(message) == HumanMessage:
-                 formatted_history += f'\nHuman: {message.content}'
+                 formatted_history += f'\nCustomer: {message.content}'
             elif type(message) == AIMessage:
-                formatted_history += f'\nAI: {message.content}'
-        return formatted_history
+                formatted_history += f'\nSupport Agent of Smart Prints: {message.content}'
+        return formatted_history if formatted_history else 'EMPTY'
     
     def _format_context(self, context):
         formatted_context = ''
         for index, doc in enumerate(context):
-            formatted_context += f'\nDocument {index + 1}: \"{doc.page_content}\"'
-        return formatted_context
+            formatted_context += f'\nDocument {index + 1}: \"{doc.page_content.strip()}\"'
+        return formatted_context if formatted_context else 'EMPTY'

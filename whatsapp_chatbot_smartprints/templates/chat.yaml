@@ -1,5 +1,5 @@
 prompt: |
-  Use the context below and the chat history to answer the question.
+  Use the context below and the chat history to answer the message.
 
   Chat History:
   {history}
@@ -7,9 +7,9 @@ prompt: |
   Context: 
   {context}
 
-  Question: {question}
+  Message: {message}
 
 variables:
   history: "Enter the chat history."
   context: "Enter the context."
-  question: "Enter the question."
+  message: "Enter the message."

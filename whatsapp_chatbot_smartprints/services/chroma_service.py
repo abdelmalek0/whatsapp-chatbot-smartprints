@@ -5,6 +5,7 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import TextLoader
 from typing import List
 from langchain_core.documents import Document
+from utility import normalize_distance_reversed
 
 class ChromaService:
     def __init__(self, collection_name, persist_directory, embedding_model_name):
@@ -14,7 +15,8 @@ class ChromaService:
         self.chroma = Chroma(
             collection_name=self.collection_name,
             embedding_function=self.embed_model,
-            persist_directory=self.persist_directory
+            persist_directory=self.persist_directory,
+            relevance_score_fn=normalize_distance_reversed
         )
         self.text_splitter = RecursiveCharacterTextSplitter(
             separators=["\n\n"], 
@@ -48,5 +50,8 @@ class ChromaService:
             print(f"Error indexing files: {e}")
         print('Indexing files into the database: 🟩 Finished')
 
-    def retrieve(self, query, k=5):
-        return self.chroma.as_retriever(search_kwargs={'k': k}).invoke(query)
+    def retrieve(self, query: str, score_threshold=.8, k=5) -> List[Document]:
+        return self.chroma.as_retriever(
+            search_type="similarity_score_threshold",
+            search_kwargs={"score_threshold": score_threshold, "k": k}
+            ).invoke(query)

@@ -1,0 +1,14 @@
+prompt: |
+  You are a customer chatting with a support agent. Refine your message by:
+  - Replacing "my" and similar words with specific names if possible.
+  - Adding details to "Yes" or "No" answers based on the chat history.
+  - Clarifying terms using the chat history, but do not add new info.
+
+  Only use the message and chat history provided. Do not create or change information.
+
+  New message:
+  {message}
+  Chat history (if needed):
+  {history}
+
+  Provide ONLY the refined message.

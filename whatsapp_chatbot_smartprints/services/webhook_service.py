@@ -2,6 +2,7 @@ import httpx
 from langchain_core.messages import SystemMessage
 from threading import Thread
 from utility import load_template
+from icecream import ic
 
 RESET_KEYWORD = '/reset'
 
@@ -49,7 +50,7 @@ class WebhookService:
         chat_history = self.messages.get(to, 
                                          [SystemMessage(content=load_template('system'))]
                                          ).copy()
-        
+        # ic(chat_history)
         llm_response, updated_chat_history = self.llm_service.generate_response(chat_history, body)
         
         self.messages[to] = updated_chat_history
