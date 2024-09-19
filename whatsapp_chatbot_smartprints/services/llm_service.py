@@ -1,4 +1,5 @@
 from langchain_community.chat_models import ChatOllama
+from langchain_groq import ChatGroq
 from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
 from langchain_core.output_parsers import StrOutputParser, NumberedListOutputParser
 from langchain_core.prompts import ChatPromptTemplate, HumanMessagePromptTemplate
@@ -7,7 +8,7 @@ from icecream import ic
 
 class LLMService:
     def __init__(self, model_name, chroma_service):
-        self.llm = ChatOllama(model=model_name, temperature=0.0)
+        self.llm = ChatGroq(model=model_name, temperature=0.0)
         self.chroma_service = chroma_service
         self.rag_chain = self.llm | StrOutputParser()
         self.topic_extractor = (
@@ -29,22 +30,27 @@ class LLMService:
     def generate_response(self, chat_history, query):
         
         new_message = HumanMessagePromptTemplate.from_template(load_template('chat'))
-        ic(chat_history[1:])
-        # translated_query = self.query_translator.invoke({
-        #     'history': self._format_history(chat_history[-2:]),
-        #     'message': query
-        #     }
-        # )
-        translated_query = str(query)
-        context = self.chroma_service.retrieve(translated_query, score_threshold=.7, k=5)
+        ic(query)
+        translated_query = self.query_translator.invoke({
+            'history': self._format_history(chat_history[-2:]),
+            'message': query
+            }
+        )
+        ic(translated_query)
+        # query_topic = self.topic_extractor.invoke(translated_query) 
+        # query_topic = query_topic[0] if len(query_topic) else ""
+        # ic(query_topic)
+        context = self.chroma_service.retrieve(translated_query, score_threshold=.75, k=5)
         
         new_message_formatted = new_message.format(
             history=self._format_history(chat_history[1:]), 
             context=self._format_context(context), 
-            message=translated_query
+            message=query
             )
         
-        ic(translated_query)
+        
+        ic(new_message_formatted)
+        # llm_response = self.rag_chain.invoke(chat_history[:] + [new_message_formatted])
         if len(chat_history) > 3:
             llm_response = self.rag_chain.invoke(chat_history[:1] + chat_history[-2:] + [new_message_formatted])
         else:
@@ -64,7 +70,7 @@ class LLMService:
             if type(message) == HumanMessage:
                  formatted_history += f'\nCustomer: {message.content}'
             elif type(message) == AIMessage:
-                formatted_history += f'\nSupport Agent of Smart Prints: {message.content}'
+                formatted_history += f'\nSupport Agent: {message.content}'
         return formatted_history if formatted_history else 'EMPTY'
     
     def _format_context(self, context):

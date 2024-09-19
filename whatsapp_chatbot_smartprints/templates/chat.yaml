@@ -1,5 +1,5 @@
 prompt: |
-  Use the context below and the chat history to answer the message.
+  Use the provided context and chat history carefully to fully understand the question and provide a relevant, accurate response.
 
   Chat History:
   {history}
@@ -8,6 +8,8 @@ prompt: |
   {context}
 
   Message: {message}
+
+  Note: Focus more on the context than on the chat history.
 
 variables:
   history: "Enter the chat history."

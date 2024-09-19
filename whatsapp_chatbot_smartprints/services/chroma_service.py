@@ -38,13 +38,13 @@ class ChromaService:
             texts.extend(doc.page_content.split('$$$$$$$$$$$$$$$$'))
 
         texts = [text for text in texts if text]
-        extracted_topics = [summarizer.invoke(text)[0] for text in texts]
+        # extracted_topics = [summarizer.invoke(text)[0] for text in texts]
 
         try:
             self.chroma.add_texts(
                 ids=[f'{idx}' for idx in range(len(texts))],
                 texts= texts,
-                embeddings= self.embed_model.embed_documents(extracted_topics)
+                embeddings= self.embed_model.embed_documents(texts)
                 )
         except Exception as e:
             print(f"Error indexing files: {e}")

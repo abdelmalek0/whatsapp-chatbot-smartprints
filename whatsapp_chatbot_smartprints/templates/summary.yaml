@@ -5,7 +5,6 @@ prompt: |
   - Start directly with summary content
   - Omit phrases like "Here is the summary" or "This text contains"
   - Include only information present in the original text
-  - Do not add any details or interpretations not explicitly stated
 
   Text:
   {content}

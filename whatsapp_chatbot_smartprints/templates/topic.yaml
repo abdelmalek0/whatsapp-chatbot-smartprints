@@ -1,6 +1,7 @@
 prompt: |
   Extract the main topic of the following text. 
   Write it as an item in an ordered list.
+  If No main topic exists, return an empty list.
 
   Text:
   {content}

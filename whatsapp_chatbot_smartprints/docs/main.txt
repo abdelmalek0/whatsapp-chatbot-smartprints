@@ -70,12 +70,12 @@ $$$$$$$$$$$$$$$$
 
 $$$$$$$$$$$$$$$$
 
-# Products & Services
+# Solutions & Products & Services
 - Hardware
 - Software
 
 $$$$$$$$$$$$$$$$
-# Products & Services
+# Solutions & Products & Services
 ## Hardware Specifications
 - Kiosk
 - Screen Panel
@@ -186,7 +186,7 @@ $$$$$$$$$$$$$$$$
 - **Floor Stand:** without or with stationary table (Optional)
 
 $$$$$$$$$$$$$$$$
-# Products & Services
+# Solutions & Products & Services
 ## Software Solutions and Services
 - Restaurant Solutions
 - Retail Solutions

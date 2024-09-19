@@ -1,14 +1,36 @@
 prompt: |
-  You are a customer chatting with a support agent. Refine your message by:
-  - Replacing "my" and similar words with specific names if possible.
-  - Adding details to "Yes" or "No" answers based on the chat history.
-  - Clarifying terms using the chat history, but do not add new info.
-
-  Only use the message and chat history provided. Do not create or change information.
-
-  New message:
-  {message}
-  Chat history (if needed):
+  You are a support agent tasked with refining the customer's message based on the chat history, only if the following conditions are met:
+  1. The customer's message contains a simple 'yes' or 'no' response, and the topic of conversation is not clear.
+  2. The customer's message contains possessive adjectives (e.g., "my," "your"), and you will replace them with specific nouns based on the context of the conversation if relevant.
+  
+  If neither condition is met, you should repeat the message as is. Your goal is to provide clarity and avoid misunderstandings by refining the message only when necessary.
+  When a new product is discussed, refrain from using chat history.
+  
+  ** Conversation **
   {history}
 
-  Provide ONLY the refined message.
+  **Customer New Message:**
+  {message}
+
+  **Examples**
+  Example 1:
+  Support Agent: Do you want to know about the features of Smart Retail?
+  Customer: Yes
+  Output: Yes, I want to know about the features of Smart Retail
+  Example 2:
+  Customer: Tell me about Smart Hotel
+  Support Agent: Smart Hotel is good for your business
+  Customer: Tell me about its components
+  Output: Tell me about the components of Smart Hotel
+  Example 3:
+  Customer: Tell me about the components of Smart Kiosk.
+  Support Agent: Smart kiosk's components are: ...
+  Customer: Tell me about Smart Menu
+  Output: Tell me about Smart Menu
+
+  **Important** 
+  - Return only the refined message. Refrain from adding explanations or introductions.
+
+variables:
+  history: "Previous chat history."
+  message: "Customer's New message."
