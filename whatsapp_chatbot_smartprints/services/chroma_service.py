@@ -1,11 +1,14 @@
 import os
-from langchain_chroma import Chroma
-from langchain_community.embeddings.ollama import OllamaEmbeddings
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.document_loaders import TextLoader
 from typing import List
+
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_chroma import Chroma
+from langchain_community.document_loaders import TextLoader
+from langchain_community.embeddings.ollama import OllamaEmbeddings
 from langchain_core.documents import Document
-from utility import normalize_distance_reversed
+
+from whatsapp_chatbot_smartprints.utility import normalize_distance_reversed
+
 
 class ChromaService:
     def __init__(self, collection_name, persist_directory, embedding_model_name):

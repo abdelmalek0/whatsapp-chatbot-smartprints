@@ -1,10 +1,14 @@
-from langchain_community.chat_models import ChatOllama
-from langchain_groq import ChatGroq
-from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
-from langchain_core.output_parsers import StrOutputParser, NumberedListOutputParser
-from langchain_core.prompts import ChatPromptTemplate, HumanMessagePromptTemplate
-from utility import load_template
 from icecream import ic
+from langchain_community.chat_models import ChatOllama
+from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
+from langchain_core.output_parsers import (NumberedListOutputParser,
+                                           StrOutputParser)
+from langchain_core.prompts import (ChatPromptTemplate,
+                                    HumanMessagePromptTemplate)
+from langchain_groq import ChatGroq
+
+from whatsapp_chatbot_smartprints.utility import load_template
+
 
 class LLMService:
     def __init__(self, model_name, chroma_service):

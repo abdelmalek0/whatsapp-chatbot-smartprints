@@ -1,11 +1,13 @@
-import httpx
-from langchain_core.messages import SystemMessage
-from threading import Thread
-from utility import load_template
-from icecream import ic
-from pydub import AudioSegment
-import whisper
 import os
+from threading import Thread
+
+import httpx
+import whisper
+from icecream import ic
+from langchain_core.messages import SystemMessage
+from pydub import AudioSegment
+
+from whatsapp_chatbot_smartprints.utility import load_template
 
 RESET_KEYWORD = '/reset'
 
@@ -66,7 +68,7 @@ class WebhookService:
         return '', 200
 
     def mark_as_read(self, business_phone_number_id, message_id):
-        httpx.post(
+        response = httpx.post(
             f"https://graph.facebook.com/v20.0/{business_phone_number_id}/messages",
             headers={"Authorization": f"Bearer {self.graph_api_token}"},
             json={
@@ -75,6 +77,7 @@ class WebhookService:
                 "message_id": message_id,
             }
         )
+        ic(response.json())
 
     def reply_using_llm(self, business_phone_number_id, to, body, replied_to=None):
         chat_history = self.messages.get(to, 

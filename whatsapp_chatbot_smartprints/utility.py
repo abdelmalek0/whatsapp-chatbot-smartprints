@@ -1,5 +1,7 @@
-import yaml
 import os
+
+import yaml
+
 
 def load_template(template_name):
     template_path = os.path.join('templates', f'{template_name}.yaml')
