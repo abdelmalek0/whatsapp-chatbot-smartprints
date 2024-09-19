@@ -1,6 +1,7 @@
 import httpx
 from langchain_core.messages import SystemMessage
 from threading import Thread
+import queue
 from utility import load_template
 from icecream import ic
 from pydub import AudioSegment
@@ -13,16 +14,16 @@ class WebhookService:
         self.graph_api_token = graph_api_token
         self.verify_token = verify_token
         self.llm_service = llm_service
-        self.recognizer = whisper.load_model("base")
+        self.recognizer = whisper.load_model("medium")
         self.messages = {}
+        self.queue = queue.Queue()
 
     def handle_webhook(self, data):
         message = data.get('entry', [{}])[0].get('changes', [{}])[0].get('value', {}).get('messages', [{}])[0]
         business_phone_number_id = data.get('entry', [{}])[0].get('changes', [{}])[0].get('value', {}).get('metadata', {}).get('phone_number_id')
-            
+        
         if message.get('type') == 'text':
-            self.mark_as_read(business_phone_number_id, message['id'])
-            
+            self.mark_as_read(business_phone_number_id, message['id'])  
             print(f"You received a message from {message['from']} saying:\n{message['text']['body']}")
             
             if message['text']['body'].strip() == RESET_KEYWORD:
@@ -35,6 +36,7 @@ class WebhookService:
                             message['id']]
                 ).start()
         if message.get('type') == 'audio':
+            self.mark_as_read(business_phone_number_id, message['id'])  
             # Replace with your WhatsApp API credentials and message details
             base_url = 'https://graph.facebook.com/v20.0/'  # Adjust this URL based on the WhatsApp API you are using
             media_id = message.get('audio').get('id')
@@ -50,15 +52,13 @@ class WebhookService:
 
             # Check if the request was successful
             if response.status_code == 200:
-                # Write the audio file to disk
-                ic(response.json())
-                audio_url = response.json()['url']
-                ic(audio_url)
-                with open('audio.ogg', 'wb') as file:
-                    file.write(httpx.get(audio_url, headers=headers).content)
-                Thread(target=self.transcribe_audio, args=['audio.ogg',]).start()
-                print("Audio downloaded successfully.")
-                
+                Thread(target=self.handle_audio,
+                       args=[
+                           response.json()['url'],
+                           message,
+                           business_phone_number_id, 
+                        ]
+                ).start()
             else:
                 print(f"Failed to download audio. Status code: {response.status_code}")
             
@@ -112,6 +112,28 @@ class WebhookService:
         audio.export(wav_path, format="wav")
 
     def transcribe_audio(self, audio_filename):
-        self.ogg_to_wav(audio_filename, 'audio.wav')
-        result = self.recognizer.transcribe("audio.wav")
-        print(result['text'].strip())
+        result = self.recognizer.transcribe(audio_filename)
+        return result['text'].strip()
+
+    def handle_audio(self, audio_url, message, business_phone_number_id):
+        headers = {
+            "Authorization": f"Bearer {self.graph_api_token}",
+            "Content-Type": "application/json"
+        }
+        # get audio data
+        with open(f'audio/temp_{business_phone_number_id}.ogg', 'wb') as file:
+            file.write(httpx.get(audio_url, headers=headers).content)
+        # convert to correct format
+        self.ogg_to_wav(f'audio/temp_{business_phone_number_id}.ogg', 
+                        f'audio/temp_{business_phone_number_id}.wav')
+        # trascribe
+        message_body = self.transcribe_audio(f'audio/temp_{business_phone_number_id}.wav')
+        print(f"You received an audio message from {message['from']} saying:\n{message_body}")
+        # reply using llm
+        Thread(target=self.reply_using_llm, 
+               args=[business_phone_number_id, 
+                    message['from'], 
+                    message_body, 
+                    message['id']]
+            ).start()
+        
