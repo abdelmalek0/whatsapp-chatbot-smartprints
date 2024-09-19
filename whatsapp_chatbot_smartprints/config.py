@@ -9,4 +9,5 @@ class Config:
     MODEL_NAME = 'llama-3.1-70b-versatile'
     EMBED_MODEL_NAME = 'mxbai-embed-large:latest'
     CHROMA_DB = './chromadb/'
+    AUDIO_STORAGE = './audio/'
     COLLECTION_NAME = 'smartprints'

@@ -11,9 +11,13 @@ from services.webhook_service import WebhookService
 
 def create_app(config_class=Config):
     load_dotenv()
+    
     app = Flask(__name__)
     app.config.from_object(config_class)
     CORS(app)
+
+    if not os.path.exists(app.config['AUDIO_STORAGE']):
+        os.makedirs(app.config['AUDIO_STORAGE'])
 
     # Initialize services
     chroma_service = ChromaService(
@@ -44,8 +48,11 @@ def create_app(config_class=Config):
     webhook_service = WebhookService(
         graph_api_token=app.config['GRAPH_API_TOKEN'],
         verify_token=app.config['WEBHOOK_VERIFY_TOKEN'],
-        llm_service=llm_service
+        llm_service=llm_service,
+        audio_storage=app.config['AUDIO_STORAGE']
     )
+
+    
 
     # Register blueprints
     app.register_blueprint(webhook_bp)

@@ -1,22 +1,23 @@
 import httpx
 from langchain_core.messages import SystemMessage
 from threading import Thread
-import queue
 from utility import load_template
 from icecream import ic
 from pydub import AudioSegment
 import whisper
+import os
 
 RESET_KEYWORD = '/reset'
 
 class WebhookService:
-    def __init__(self, graph_api_token, verify_token, llm_service):
+    def __init__(self, graph_api_token, verify_token, llm_service, audio_storage):
         self.graph_api_token = graph_api_token
         self.verify_token = verify_token
         self.llm_service = llm_service
-        self.recognizer = whisper.load_model("medium")
+        self.audio_storage = audio_storage
+
+        self.recognizer = whisper.load_model("medium.en")
         self.messages = {}
-        self.queue = queue.Queue()
 
     def handle_webhook(self, data):
         message = data.get('entry', [{}])[0].get('changes', [{}])[0].get('value', {}).get('messages', [{}])[0]
@@ -120,14 +121,16 @@ class WebhookService:
             "Authorization": f"Bearer {self.graph_api_token}",
             "Content-Type": "application/json"
         }
+        ogg_audio_filepath = os.path.join(self.audio_storage, f'temp_{message['from']}.ogg')
+        wav_audio_filepath = os.path.join(self.audio_storage, f'temp_{message['from']}.wav')
         # get audio data
-        with open(f'audio/temp_{business_phone_number_id}.ogg', 'wb') as file:
+        with open(ogg_audio_filepath, 'wb') as file:
             file.write(httpx.get(audio_url, headers=headers).content)
         # convert to correct format
-        self.ogg_to_wav(f'audio/temp_{business_phone_number_id}.ogg', 
-                        f'audio/temp_{business_phone_number_id}.wav')
+        self.ogg_to_wav(ogg_audio_filepath, 
+                        wav_audio_filepath)
         # trascribe
-        message_body = self.transcribe_audio(f'audio/temp_{business_phone_number_id}.wav')
+        message_body = self.transcribe_audio(wav_audio_filepath)
         print(f"You received an audio message from {message['from']} saying:\n{message_body}")
         # reply using llm
         Thread(target=self.reply_using_llm, 
