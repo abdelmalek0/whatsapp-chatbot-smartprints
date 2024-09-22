@@ -7,7 +7,7 @@ from icecream import ic
 from langchain_core.messages import SystemMessage
 from pydub import AudioSegment
 
-from whatsapp_chatbot_smartprints.utility import load_template
+from utility import load_template
 
 RESET_KEYWORD = '/reset'
 
@@ -124,8 +124,8 @@ class WebhookService:
             "Authorization": f"Bearer {self.graph_api_token}",
             "Content-Type": "application/json"
         }
-        ogg_audio_filepath = os.path.join(self.audio_storage, f'temp_{message['from']}.ogg')
-        wav_audio_filepath = os.path.join(self.audio_storage, f'temp_{message['from']}.wav')
+        ogg_audio_filepath = os.path.join(self.audio_storage, f"temp_{message['from']}.ogg")
+        wav_audio_filepath = os.path.join(self.audio_storage, f"temp_{message['from']}.wav")
         # get audio data
         with open(ogg_audio_filepath, 'wb') as file:
             file.write(httpx.get(audio_url, headers=headers).content)

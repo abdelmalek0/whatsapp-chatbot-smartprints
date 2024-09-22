@@ -7,7 +7,7 @@ from langchain_core.prompts import (ChatPromptTemplate,
                                     HumanMessagePromptTemplate)
 from langchain_groq import ChatGroq
 
-from whatsapp_chatbot_smartprints.utility import load_template
+from utility import load_template
 
 
 class LLMService:

@@ -5,11 +5,11 @@ from dotenv import load_dotenv
 from flask import Flask
 from flask_cors import CORS
 
-from whatsapp_chatbot_smartprints.config import Config
-from whatsapp_chatbot_smartprints.routes import webhook_bp
-from whatsapp_chatbot_smartprints.services.chroma_service import ChromaService
-from whatsapp_chatbot_smartprints.services.llm_service import LLMService
-from whatsapp_chatbot_smartprints.services.webhook_service import \
+from config import Config
+from routes import webhook_bp
+from services.chroma_service import ChromaService
+from services.llm_service import LLMService
+from services.webhook_service import \
     WebhookService
 
 

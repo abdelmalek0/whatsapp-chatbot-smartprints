@@ -7,7 +7,7 @@ from langchain_community.document_loaders import TextLoader
 from langchain_community.embeddings.ollama import OllamaEmbeddings
 from langchain_core.documents import Document
 
-from whatsapp_chatbot_smartprints.utility import normalize_distance_reversed
+from utility import normalize_distance_reversed
 
 
 class ChromaService:
