@@ -6,6 +6,7 @@ import whisper
 from icecream import ic
 from langchain_core.messages import SystemMessage
 from pydub import AudioSegment
+from groq import Groq
 
 from utility import load_template
 
@@ -19,6 +20,7 @@ class WebhookService:
         self.audio_storage = audio_storage
 
         self.recognizer = whisper.load_model("medium.en")
+        self.groq_client = Groq()
         self.messages = {}
 
     def handle_webhook(self, data):
@@ -115,9 +117,20 @@ class WebhookService:
         audio = AudioSegment.from_ogg(ogg_path)
         audio.export(wav_path, format="wav")
 
-    def transcribe_audio(self, audio_filename):
+    def transcribe_offline(self, audio_filename):
         result = self.recognizer.transcribe(audio_filename)
         return result['text'].strip()
+    
+    def transcribe_using_groq(self, audio_filename: str) -> str :
+        with open(audio_filename, "rb") as file:
+            transcription = self.groq_client.audio.transcriptions.create(
+            file=(audio_filename, file.read()), # Required audio file
+            model="whisper-large-v3", # Required model to use for transcription
+            response_format="json",
+            temperature=0.0,
+            language="en"
+            )
+        return transcription.text.strip()
 
     def handle_audio(self, audio_url, message, business_phone_number_id):
         headers = {
@@ -133,7 +146,7 @@ class WebhookService:
         self.ogg_to_wav(ogg_audio_filepath, 
                         wav_audio_filepath)
         # trascribe
-        message_body = self.transcribe_audio(wav_audio_filepath)
+        message_body = self.transcribe_using_groq(wav_audio_filepath)
         print(f"You received an audio message from {message['from']} saying:\n{message_body}")
         # reply using llm
         Thread(target=self.reply_using_llm, 
