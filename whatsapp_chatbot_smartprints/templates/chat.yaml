@@ -9,8 +9,6 @@ prompt: |
 
   Message: {message}
 
-  Note: Focus more on the context than on the chat history.
-
 variables:
   history: "Enter the chat history."
   context: "Enter the context."

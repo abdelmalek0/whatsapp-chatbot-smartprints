@@ -12,7 +12,7 @@ from utility import load_template
 
 class LLMService:
     def __init__(self, model_name, chroma_service):
-        self.llm = ChatGroq(model=model_name, temperature=0.1)
+        self.llm = ChatGroq(model=model_name, temperature=0.0)
         self.chroma_service = chroma_service
         self.rag_chain = self.llm | StrOutputParser()
         self.topic_extractor = (

@@ -1,8 +1,10 @@
 import os
 from threading import Thread
+from math import exp
+from typing import Literal
 
 import httpx
-import whisper
+# import whisper
 from icecream import ic
 from langchain_core.messages import SystemMessage
 from pydub import AudioSegment
@@ -19,7 +21,7 @@ class WebhookService:
         self.llm_service = llm_service
         self.audio_storage = audio_storage
 
-        self.recognizer = whisper.load_model("medium.en")
+        # self.recognizer = whisper.load_model("medium.en")
         self.groq_client = Groq()
         self.messages = {}
 
@@ -110,7 +112,6 @@ class WebhookService:
             data['context'] = {"message_id": replied_to}
         
         httpx.post(url, headers=headers, json=data)
-
     
     def ogg_to_wav(self, ogg_path: str, wav_path: str):
         # Convert OGG file to WAV format
@@ -121,16 +122,17 @@ class WebhookService:
         result = self.recognizer.transcribe(audio_filename)
         return result['text'].strip()
     
-    def transcribe_using_groq(self, audio_filename: str) -> str :
+    def transcribe_using_groq(self, audio_filename: str, language: Literal['ar', 'en'] = 'en') -> str :
         with open(audio_filename, "rb") as file:
             transcription = self.groq_client.audio.transcriptions.create(
             file=(audio_filename, file.read()), # Required audio file
             model="whisper-large-v3", # Required model to use for transcription
-            response_format="json",
+            response_format="verbose_json",
+            prompt="Only Transcribe, do not translate.",
             temperature=0.0,
-            language="en"
+            language=language
             )
-        return transcription.text.strip()
+        return (transcription.text.strip(), exp(transcription.segments[0]["avg_logprob"]))
 
     def handle_audio(self, audio_url, message, business_phone_number_id):
         headers = {
@@ -145,9 +147,11 @@ class WebhookService:
         # convert to correct format
         self.ogg_to_wav(ogg_audio_filepath, 
                         wav_audio_filepath)
-        # trascribe
-        message_body = self.transcribe_using_groq(wav_audio_filepath)
-        print(f"You received an audio message from {message['from']} saying:\n{message_body}")
+        # language detection and trascription
+        lang_detection = [ self.transcribe_using_groq(wav_audio_filepath, language) \
+                          for language in ['ar', 'en'] ]
+        message_body, transcription_donfidence = max(lang_detection, key=lambda x: x[1])
+        print(f"You received an audio message from {message['from']} saying:\n{message_body} \nconfidence: {transcription_donfidence}")
         # reply using llm
         Thread(target=self.reply_using_llm, 
                args=[business_phone_number_id, 
