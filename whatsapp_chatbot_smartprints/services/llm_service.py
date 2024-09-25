@@ -44,7 +44,7 @@ class LLMService:
         # query_topic = self.topic_extractor.invoke(translated_query) 
         # query_topic = query_topic[0] if len(query_topic) else ""
         # ic(query_topic)
-        context = self.chroma_service.retrieve(translated_query, score_threshold=.75, k=5)
+        context = self.chroma_service.retrieve(translated_query, score_threshold=.7, k=5)
         
         new_message_formatted = new_message.format(
             history=self._format_history(chat_history[1:]), 
