@@ -2098,6 +2098,22 @@ extra = ["lxml (>=4.6)", "pydot (>=2.0)", "pygraphviz (>=1.12)", "sympy (>=1.10)
 test = ["pytest (>=7.2)", "pytest-cov (>=4.0)"]
 
 [[package]]
+name = "neuralspace"
+version = "1.2.0"
+description = ""
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "neuralspace-1.2.0-py3-none-any.whl", hash = "sha256:59d123c34227311af1126262047bdb8462d091ee31e6c56fd240d5c75b0c6c23"},
+    {file = "neuralspace-1.2.0.tar.gz", hash = "sha256:62cb9f7b82c8e89edcfd14052f0a8957dfd524058696bf411e0673dcdb6d8320"},
+]
+
+[package.dependencies]
+requests = "*"
+typer = "*"
+websocket-client = "*"
+
+[[package]]
 name = "numba"
 version = "0.60.0"
 description = "compiling Python code using LLVM"
@@ -4215,4 +4231,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "305cde7eb0c80e1daa2e0a6d7a5bfb9a7cc2f3615fcfeba3d65cfce0b3d648a0"
+content-hash = "80164b5ea06086b24277f8be763aa229e5f162dc444a5f1830443d3c0a23ab89"

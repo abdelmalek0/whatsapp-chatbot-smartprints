@@ -9,6 +9,7 @@ from icecream import ic
 from langchain_core.messages import SystemMessage
 from pydub import AudioSegment
 from groq import Groq
+import neuralspace as ns
 
 from utility import load_template
 
@@ -23,6 +24,13 @@ class WebhookService:
 
         # self.recognizer = whisper.load_model("medium.en")
         self.groq_client = Groq()
+        self.vai = ns.VoiceAI()
+        self.vai_config = {
+            "file_transcription": {
+                "mode": "advanced",
+            },
+            "sentiment_detect": False
+        }
         self.messages = {}
 
     def handle_webhook(self, data):
@@ -118,9 +126,9 @@ class WebhookService:
         audio = AudioSegment.from_ogg(ogg_path)
         audio.export(wav_path, format="wav")
 
-    # def transcribe_offline(self, audio_filename):
-    #     result = self.recognizer.transcribe(audio_filename)
-    #     return result['text'].strip()
+    def transcribe_offline(self, audio_filename):
+        result = self.recognizer.transcribe(audio_filename)
+        return result['text'].strip()
     
     def transcribe_using_groq(self, audio_filename: str) -> str :
         with open(audio_filename, "rb") as file:
@@ -128,11 +136,17 @@ class WebhookService:
             file=(audio_filename, file.read()), # Required audio file
             model="whisper-large-v3", # Required model to use for transcription
             response_format="json",
-            prompt="Transcribe the spoken content exactly as it is heard. Use Either English or Arabic.",
+            prompt="Transcribe only avoid translation.",
             temperature=0.0,
             )
         return transcription.text.strip()
 
+    def transcribe_using_neuralspace(self, audio_filename: str)-> str:
+        job_id = self.vai.transcribe(file=audio_filename, config=self.vai_config)
+        result = self.vai.poll_until_complete(job_id)
+        content = result["data"]["result"]["transcription"]["channels"]["0"]["transcript"]
+        return content.strip()
+        
     def handle_audio(self, audio_url, message, business_phone_number_id):
         headers = {
             "Authorization": f"Bearer {self.graph_api_token}",
@@ -146,7 +160,11 @@ class WebhookService:
         # convert to correct format
         self.ogg_to_wav(ogg_audio_filepath, 
                         wav_audio_filepath)
-        message_body = self.transcribe_using_groq(wav_audio_filepath)
+        
+        # language detection and trascription
+        # message_body = self.transcribe_using_groq(wav_audio_filepath)
+        message_body = self.transcribe_using_neuralspace(wav_audio_filepath)
+
         print(f"You received an audio message from {message['from']} saying:\n{message_body}")
         # reply using llm
         Thread(target=self.reply_using_llm, 
