@@ -27,8 +27,8 @@ class ChromaService:
             chunk_overlap=200
         )
 
-    def index_files(self, summarizer):
-        print('Indexing files into the database ...')
+    def index_files(self, summarizer, batch_size=32):
+        print('Indexing files ...')
         documents: List[Document] = []
         for file in os.listdir("./docs/"):
             filepath = os.path.join("./docs/", file)
@@ -41,7 +41,6 @@ class ChromaService:
             texts.extend(doc.page_content.split('$$$$$$$$$$$$$$$$'))
 
         texts = [text for text in texts if text]
-        # extracted_topics = [summarizer.invoke(text)[0] for text in texts]
 
         try:
             self.chroma.add_texts(

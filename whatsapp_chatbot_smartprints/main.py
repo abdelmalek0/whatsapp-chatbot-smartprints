@@ -35,10 +35,12 @@ def create_app(config_class=Config):
         chroma_service=chroma_service
     )
 
-    # Thread(
+    # thread = Thread(
     #     target=chroma_service.index_files, 
-    #     args=[llm_service.summarizer]
-    #     ).start()
+    #     args=[llm_service.summarizer],
+    #     daemon=True
+    #     )
+    # thread.start()
     if not os.path.exists(app.config['CHROMA_DB']) and \
         app.config['COLLECTION_NAME'] not in [collection.name \
                 for collection in chroma_service.chroma._client.list_collections()]:
@@ -55,7 +57,6 @@ def create_app(config_class=Config):
         llm_service=llm_service,
         audio_storage=app.config['AUDIO_STORAGE']
     )
-
     
 
     # Register blueprints
@@ -63,7 +64,6 @@ def create_app(config_class=Config):
 
     # Inject services into blueprint
     webhook_bp.webhook_service = webhook_service
-
     return app
 
 if __name__ == '__main__':

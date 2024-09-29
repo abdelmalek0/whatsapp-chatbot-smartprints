@@ -25,28 +25,28 @@ At Smart Prints, we believe that the future of business lies in intelligent auto
 Whether you’re a retail chain looking to enhance your customer service through self-order kiosks or a restaurant aiming to optimize back-end operations, Smart Prints is here to partner with you on your journey toward operational excellence and business success.
 
 $$$$$$$$$$$$$$$$
-## Introduction
-### Mission and Vision
+# Company Overview
+## Mission and Vision
 
 Smart Prints was established to address the pressing challenges faced by businesses today, such as market fluctuations, rising labor costs, quality control issues, and the need for cost-effective operations. The company’s mission is to leverage cutting-edge research and development, technology, and business intelligence to transform these challenges into opportunities. By doing so, Smart Prints aims to simplify business processes, boost operational efficiency, and significantly enhance customer experiences.
 
 $$$$$$$$$$$$$$$$
-## Introduction
-### Team and Expertise
+# Company Overview
+## Team and Expertise
 
 Smart Prints boasts a team with over 40 years of collective experience across various sectors, including FMCG, F&B, import/export, manufacturing, and software development. The team’s diverse expertise covers project management, consulting, applications architecture, and change management. This wealth of experience ensures that Smart Prints can deliver high-quality, scalable solutions to its clients.
 
 Our team brings together over 40 years of combined experience across various industries, including FMCG, F&B, import/export, manufacturing, and software development. With backgrounds in multinational companies, semi-government entities, and international chains, our team members have held key roles in project management, general management, consulting, and application architecture. This diverse expertise enables us to design innovative solutions, draft new policies, and implement large-scale applications that drive business success. Our commitment to continuous learning and adaptation ensures that we remain at the forefront of technological advancements.
 
 $$$$$$$$$$$$$$$$
-## Introduction
-### Certification and Partners
+# Company Overview
+## Certification and Partners
 
 Smart Prints is recognized as a Certified Merchant Services Provider by Saudi Payments/Saudi Central Bank. The company has also established strong partnerships with industry leaders, enabling it to offer reliable and secure services.
 
 $$$$$$$$$$$$$$$$
-## Introduction
-### Commitment to Clients
+# Company Overview
+## Commitment to Clients
 
 Smart Prints is dedicated to providing exceptional support and service to its clients. The company offers multiple levels of technical support, including off-site, on-site, and developer support, ensuring that clients receive the assistance they need to maximize the benefits of their Smart Prints solutions.
 

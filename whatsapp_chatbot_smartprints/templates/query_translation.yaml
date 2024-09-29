@@ -30,6 +30,7 @@ prompt: |
 
   **Important** 
   - Return only the refined message. Refrain from adding explanations or introductions.
+  - IF the message is in Arabic, return an Arabic message if it's in English return English.
 
 variables:
   history: "Previous chat history."
