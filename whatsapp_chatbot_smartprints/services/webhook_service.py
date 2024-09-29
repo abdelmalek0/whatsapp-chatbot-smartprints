@@ -2,6 +2,7 @@ import os
 from threading import Thread
 from math import exp
 from typing import Literal
+from dataclasses import dataclass, field
 
 import httpx
 # import whisper
@@ -11,9 +12,22 @@ from pydub import AudioSegment
 from groq import Groq
 import neuralspace as ns
 
-from utility import load_template
+from utility import load_template, generate_short_id
 
 RESET_KEYWORD = '/reset'
+
+@dataclass
+class Session:
+    id: str = field(init=False)
+    messages: list
+    alive: bool = True
+
+    def __post_init__(self):
+        self.id = generate_short_id()
+
+    def update_messages(self, messages):
+        self.messages = messages
+
 
 class WebhookService:
     def __init__(self, graph_api_token, verify_token, llm_service, audio_storage):
@@ -31,7 +45,7 @@ class WebhookService:
             },
             "sentiment_detect": False
         }
-        self.messages = {}
+        self.sessions = {}
 
     def handle_webhook(self, data):
         message = data.get('entry', [{}])[0].get('changes', [{}])[0].get('value', {}).get('messages', [{}])[0]
@@ -42,7 +56,7 @@ class WebhookService:
             print(f"You received a message from {message['from']} saying:\n{message['text']['body']}")
             
             if message['text']['body'].strip() == RESET_KEYWORD:
-                self.messages = {}
+                del self.sessions[message['from']]
             else:
                 Thread(target=self.reply_using_llm, 
                     args=[business_phone_number_id, 
@@ -92,13 +106,16 @@ class WebhookService:
         ic(response.json())
 
     def reply_using_llm(self, business_phone_number_id, to, body, replied_to=None):
-        chat_history = self.messages.get(to, 
-                                         [SystemMessage(content=load_template('system'))]
-                                         ).copy()
+        current_session = self.sessions.get(to, Session([SystemMessage(content=load_template('system'))]))
+        # chat_history = current_session.messages
+        # chat_history = self.messages.get(to, 
+        #                                  [SystemMessage(content=load_template('system'))]
+        #                                  ).copy()
         # ic(chat_history)
-        llm_response, updated_chat_history = self.llm_service.generate_response(chat_history, body)
+        llm_response, updated_chat_history = self.llm_service.generate_response(current_session, body, to)
         
-        self.messages[to] = updated_chat_history
+        current_session.update_messages(updated_chat_history)
+        self.sessions[to] = current_session
         
         self.send_message(business_phone_number_id, to, llm_response, replied_to)
 

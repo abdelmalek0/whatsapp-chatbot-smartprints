@@ -6,7 +6,7 @@ from langchain_core.output_parsers import (NumberedListOutputParser,
 from langchain_core.prompts import (ChatPromptTemplate,
                                     HumanMessagePromptTemplate)
 from langchain_groq import ChatGroq
-
+from langfuse.callback import CallbackHandler
 from utility import load_template
 
 
@@ -14,6 +14,7 @@ class LLMService:
     def __init__(self, model_name, chroma_service):
         self.llm = ChatGroq(model=model_name, temperature=0.0)
         self.chroma_service = chroma_service
+        self.langfuse_handler = CallbackHandler()
         self.rag_chain = self.llm | StrOutputParser()
         self.topic_extractor = (
             ChatPromptTemplate.from_template(template=load_template('topic'))
@@ -31,8 +32,8 @@ class LLMService:
             | StrOutputParser()
         )
 
-    def generate_response(self, chat_history, query):
-        
+    def generate_response(self, current_session, query, user_phonenumber):
+        chat_history = current_session.messages
         new_message = HumanMessagePromptTemplate.from_template(load_template('chat'))
         ic(query)
         translated_query = self.query_translator.invoke({
@@ -55,10 +56,21 @@ class LLMService:
         
         ic(new_message_formatted)
         # llm_response = self.rag_chain.invoke(chat_history[:] + [new_message_formatted])
+        config = {
+            "callbacks": [self.langfuse_handler],
+            "run_name": "chat",
+            "metadata": {
+                "langfuse_session_id": current_session.id,
+                "langfuse_user_id": user_phonenumber,
+                "input":query
+            },
+        }
         if len(chat_history) > 3:
-            llm_response = self.rag_chain.invoke(chat_history[:1] + chat_history[-2:] + [new_message_formatted])
+            llm_response = self.rag_chain.invoke(input=chat_history[:1] + chat_history[-2:] + [new_message_formatted],
+                                                 config=config)
         else:
-            llm_response = self.rag_chain.invoke(chat_history[:1] + [new_message_formatted])
+            llm_response = self.rag_chain.invoke(input=chat_history[:1] + [new_message_formatted],
+                                                 config=config)
         
         # ic(new_message_formatted.content)
         ic(llm_response)

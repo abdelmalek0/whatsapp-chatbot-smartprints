@@ -1,6 +1,15 @@
 import os
+import uuid
+import base64
 
 import yaml
+
+def generate_short_id():
+    # Generate a random UUID
+    uuid_bytes = uuid.uuid4().bytes
+    # Encode it to base64 and remove unnecessary characters
+    short_id = base64.urlsafe_b64encode(uuid_bytes).rstrip(b'=').decode('utf-8')
+    return short_id
 
 
 def load_template(template_name):

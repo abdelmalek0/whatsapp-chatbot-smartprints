@@ -1481,6 +1481,31 @@ files = [
 langchain-core = ">=0.3.0,<0.4.0"
 
 [[package]]
+name = "langfuse"
+version = "2.51.2"
+description = "A client library for accessing langfuse"
+optional = false
+python-versions = "<4.0,>=3.8.1"
+files = [
+    {file = "langfuse-2.51.2-py3-none-any.whl", hash = "sha256:7aab94a9452cda4587a2cd4917e455da1afd7f8a2696688742130e2f2d23ca59"},
+    {file = "langfuse-2.51.2.tar.gz", hash = "sha256:0982b108ab4c02947f682e442b0796b7a73825d31eeace1771575f6454b8f79a"},
+]
+
+[package.dependencies]
+anyio = ">=4.4.0,<5.0.0"
+backoff = ">=1.10.0"
+httpx = ">=0.15.4,<1.0"
+idna = ">=3.7,<4.0"
+packaging = ">=23.2,<25.0"
+pydantic = ">=1.10.7,<3.0"
+wrapt = ">=1.14,<2.0"
+
+[package.extras]
+langchain = ["langchain (>=0.0.309)"]
+llama-index = ["llama-index (>=0.10.12,<2.0.0)"]
+openai = ["openai (>=0.27.8)"]
+
+[[package]]
 name = "langsmith"
 version = "0.1.129"
 description = "Client library to connect to the LangSmith LLM Tracing and Evaluation Platform."
@@ -4217,4 +4242,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = "~3.11"
-content-hash = "3fa254084995f9950f0beafb935c13412ae86336ecd6f3b67b45f57e41b89e06"
+content-hash = "8ddb06e8803dc7d7050f8d1e8468e76c2b7dbf3632e9bf857e624e6c0d7dd8a6"
