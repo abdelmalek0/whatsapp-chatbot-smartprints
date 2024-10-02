@@ -1481,6 +1481,20 @@ files = [
 langchain-core = ">=0.3.0,<0.4.0"
 
 [[package]]
+name = "langdetect"
+version = "1.0.9"
+description = "Language detection library ported from Google's language-detection."
+optional = false
+python-versions = "*"
+files = [
+    {file = "langdetect-1.0.9-py2-none-any.whl", hash = "sha256:7cbc0746252f19e76f77c0b1690aadf01963be835ef0cd4b56dddf2a8f1dfc2a"},
+    {file = "langdetect-1.0.9.tar.gz", hash = "sha256:cbc1fef89f8d062739774bd51eda3da3274006b3661d199c2655f6b3f6d605a0"},
+]
+
+[package.dependencies]
+six = "*"
+
+[[package]]
 name = "langfuse"
 version = "2.51.2"
 description = "A client library for accessing langfuse"
@@ -4242,4 +4256,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = "~3.11"
-content-hash = "8ddb06e8803dc7d7050f8d1e8468e76c2b7dbf3632e9bf857e624e6c0d7dd8a6"
+content-hash = "7f88b360af905db4942a50a4f2a428584ff58ce9cdc891f4f3668b2ebd03e48b"

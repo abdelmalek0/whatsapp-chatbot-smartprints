@@ -17,23 +17,17 @@ class ChromaService:
     def __init__(self, collection_name, persist_directory, embedding_model_name):
         self.collection_name = collection_name
         self.persist_directory = persist_directory
+        # self.embed_model = OllamaEmbeddings(model=embedding_model_name)
         self.embed_model = JinaEmbeddings(
             jina_api_key=os.getenv('EMBED_API_KEY'), 
-            name="jina-embeddings-v3",
-            model_config={
-                'protected_namespaces': (),  # Set this to an empty tuple
-                # other configurations
-            }
-        )#jina-embeddings-v3 #OllamaEmbeddings(model=embedding_model_name)
+            model_name="jina-embeddings-v3"
+        )
         
         self.chroma = Chroma(
             collection_name=self.collection_name,
             embedding_function=self.embed_model,
             persist_directory=self.persist_directory,
-            # relevance_score_fn=normalize_distance_reversed,
-            collection_metadata={
-                "hnsw:space": "cosine"
-            }
+            collection_metadata={"hnsw:space": "cosine"}
         )
         self.text_splitter = RecursiveCharacterTextSplitter(
             separators=["\n\n"], 
@@ -41,8 +35,8 @@ class ChromaService:
             chunk_overlap=200
         )
 
-    def index_files(self, summarizer, batch_size=32):
-        print('Retrieving files ...')
+    def index_files(self, summarizer):
+        print('Indexing files ...')
         documents: List[Document] = []
         for file in os.listdir("./docs/"):
             filepath = os.path.join("./docs/", file)
@@ -50,27 +44,27 @@ class ChromaService:
             docs = document_loader.load()
             documents.extend(docs)
         
-        texts = []
+        mini_documents = []
         for doc in documents:
-            texts.extend(doc.page_content.split('$$$$$$$$$$$$$$$$'))
+            texts = [text for text in doc.page_content.split('$$$$$$$$$$$$$$$$') if text and text.strip('\n')]
+            metadata = doc.metadata
+            metadata['language'] = 'Arabic' if metadata['source'].split('.')[-2].endswith('ar') else 'English'
+            print(metadata)
+            for text in texts:
+                mini_documents.append(Document(page_content=text, metadata=metadata))
 
-        texts = [text for text in texts if text]
-        print('Embedding files ...')
-        embeddings = self.embed_model.embed_documents(texts)
-        print('Indexing files ...')
         try:
-            self.chroma.add_texts(
-                ids=[f'{idx}' for idx in range(len(texts))],
-                texts= texts,
-                embeddings= embeddings
-                )
+            self.chroma.add_documents(mini_documents)
         except Exception as e:
             print(f"Error indexing files: {e}")
         else:
             print('Indexing files into the database: 🟩 Finished')
 
-    def retrieve(self, query: str, score_threshold=.8, k=5) -> List[Document]:
+    def retrieve(self, query: str, language= 'English', score_threshold=.8, k=5) -> List[Document]:
         return self.chroma.as_retriever(
             search_type="similarity_score_threshold",
-            search_kwargs={"score_threshold": score_threshold, "k": k}
+            search_kwargs={"score_threshold": score_threshold, 
+                           "k": k, 
+                           'filter':{'language': language}
+                           }
             ).invoke(query)

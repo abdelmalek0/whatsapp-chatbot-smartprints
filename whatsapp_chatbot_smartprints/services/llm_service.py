@@ -7,7 +7,24 @@ from langchain_core.prompts import (ChatPromptTemplate,
                                     HumanMessagePromptTemplate)
 from langchain_groq import ChatGroq
 from langfuse.callback import CallbackHandler
+from langdetect import detect
+
 from utility import load_template
+
+
+import re
+
+def check_text_language(text):
+    # Pattern for Arabic letters
+    arabic_pattern = re.compile(r'[\u0600-\u06FF]')
+    
+    has_arabic = bool(arabic_pattern.search(text))
+    
+    if has_arabic:
+        return "Arabic"
+    else:
+        return "English"
+
 
 
 class LLMService:
@@ -33,24 +50,27 @@ class LLMService:
         )
 
     def generate_response(self, current_session, query, user_phonenumber):
+        query = query.encode('utf-8').decode()
         chat_history = current_session.messages
         new_message = HumanMessagePromptTemplate.from_template(load_template('chat'))
-        ic(query)
+        
         translated_query = self.query_translator.invoke({
             'history': self._format_history(chat_history[-2:]),
             'message': query
             }
         )
-        ic(translated_query)
-        # query_topic = self.topic_extractor.invoke(translated_query) 
-        # query_topic = query_topic[0] if len(query_topic) else ""
-        # ic(query_topic)
-        context = self.chroma_service.retrieve(translated_query, score_threshold=.5, k=5)
         
+        message_language = check_text_language(query)
+
+        context = self.chroma_service.retrieve(translated_query, message_language, score_threshold=.6, k=5)    
+        ic(query)
+        ic(translated_query)
+        ic(message_language)
         new_message_formatted = new_message.format(
             history=self._format_history(chat_history[1:]), 
             context=self._format_context(context), 
-            message=query
+            message=query,
+            language= message_language
             )
         
         

@@ -1,5 +1,5 @@
 prompt: |
-  ONLY Use the provided context and chat history to answer the client message.
+  Answer the client message using ONLY the information provided in the context and chat history if relevant.
 
   Chat History:
   {history}
@@ -9,9 +9,11 @@ prompt: |
 
   Message: {message}
 
+  Answer in {language}
   DO NOT HALLUCINATE
 
 variables:
   history: "Enter the chat history."
   context: "Enter the context."
   message: "Enter the message."
+  language: "Enter the language of the message"
