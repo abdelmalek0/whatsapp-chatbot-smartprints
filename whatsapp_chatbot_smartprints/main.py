@@ -20,8 +20,12 @@ def create_app(config_class=Config):
     app.config.from_object(config_class)
     CORS(app)
 
+    data_init = False
+
     if not os.path.exists(app.config['AUDIO_STORAGE']):
         os.makedirs(app.config['AUDIO_STORAGE'])
+    if not os.path.exists(app.config['CHROMA_DB']):
+        data_init = True
 
     # Initialize services
     chroma_service = ChromaService(
@@ -35,15 +39,7 @@ def create_app(config_class=Config):
         chroma_service=chroma_service
     )
 
-    # thread = Thread(
-    #     target=chroma_service.index_files, 
-    #     args=[llm_service.summarizer],
-    #     daemon=True
-    #     )
-    # thread.start()
-    if not os.path.exists(app.config['CHROMA_DB']) and \
-        app.config['COLLECTION_NAME'] not in [collection.name \
-                for collection in chroma_service.chroma._client.list_collections()]:
+    if data_init:
         Thread(
             target=chroma_service.index_files, 
             args=[llm_service.summarizer]

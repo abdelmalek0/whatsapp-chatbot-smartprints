@@ -1,8 +1,20 @@
-import os
-import uuid
 import base64
+import os
+import re
+import uuid
 
 import yaml
+
+def check_text_language(text):
+    # Pattern for Arabic letters
+    arabic_pattern = re.compile(r'[\u0600-\u06FF]')
+    
+    has_arabic = bool(arabic_pattern.search(text))
+    
+    if has_arabic:
+        return "Arabic"
+    else:
+        return "English"
 
 def generate_short_id():
     # Generate a random UUID

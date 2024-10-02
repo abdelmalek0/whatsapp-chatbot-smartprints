@@ -1,33 +1,17 @@
 import os
 from threading import Thread
-from math import exp
-from typing import Literal
-from dataclasses import dataclass, field
 
 import httpx
-# import whisper
+import neuralspace as ns
+from groq import Groq
 from icecream import ic
 from langchain_core.messages import SystemMessage
 from pydub import AudioSegment
-from groq import Groq
-import neuralspace as ns
 
-from utility import load_template, generate_short_id
+from structs.session import Session
+from utility import load_template
 
 RESET_KEYWORD = '/reset'
-
-@dataclass
-class Session:
-    id: str = field(init=False)
-    messages: list
-    alive: bool = True
-
-    def __post_init__(self):
-        self.id = generate_short_id()
-
-    def update_messages(self, messages):
-        self.messages = messages
-
 
 class WebhookService:
     def __init__(self, graph_api_token, verify_token, llm_service, audio_storage):
@@ -107,11 +91,6 @@ class WebhookService:
 
     def reply_using_llm(self, business_phone_number_id, to, body, replied_to=None):
         current_session = self.sessions.get(to, Session([SystemMessage(content=load_template('system'))]))
-        # chat_history = current_session.messages
-        # chat_history = self.messages.get(to, 
-        #                                  [SystemMessage(content=load_template('system'))]
-        #                                  ).copy()
-        # ic(chat_history)
         llm_response, updated_chat_history = self.llm_service.generate_response(current_session, body, to)
         
         current_session.update_messages(updated_chat_history)
@@ -190,4 +169,3 @@ class WebhookService:
                     message_body, 
                     message['id']]
             ).start()
-        

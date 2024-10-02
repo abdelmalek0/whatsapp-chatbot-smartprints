@@ -1,31 +1,16 @@
 from icecream import ic
 from langchain_community.chat_models import ChatOllama
-from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
-from langchain_core.output_parsers import (NumberedListOutputParser,
-                                           StrOutputParser)
-from langchain_core.prompts import (ChatPromptTemplate,
-                                    HumanMessagePromptTemplate)
+from langchain_core.messages import AIMessage
+from langchain_core.messages import HumanMessage
+from langchain_core.output_parsers import NumberedListOutputParser
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.prompts import HumanMessagePromptTemplate
 from langchain_groq import ChatGroq
 from langfuse.callback import CallbackHandler
-from langdetect import detect
 
+from utility import check_text_language
 from utility import load_template
-
-
-import re
-
-def check_text_language(text):
-    # Pattern for Arabic letters
-    arabic_pattern = re.compile(r'[\u0600-\u06FF]')
-    
-    has_arabic = bool(arabic_pattern.search(text))
-    
-    if has_arabic:
-        return "Arabic"
-    else:
-        return "English"
-
-
 
 class LLMService:
     def __init__(self, model_name, chroma_service):
@@ -61,8 +46,10 @@ class LLMService:
         )
         
         message_language = check_text_language(query)
-
-        context = self.chroma_service.retrieve(translated_query, message_language, score_threshold=.6, k=5)    
+        context = self.chroma_service.retrieve(translated_query, 
+                                               message_language, 
+                                               score_threshold=.5, 
+                                               k=7)    
         ic(query)
         ic(translated_query)
         ic(message_language)

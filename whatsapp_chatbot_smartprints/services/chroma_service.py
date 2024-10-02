@@ -1,13 +1,13 @@
 import os
 from typing import List
 
+from dotenv import load_dotenv
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_chroma import Chroma
 from langchain_community.document_loaders import TextLoader
-from langchain_community.embeddings.ollama import OllamaEmbeddings
 from langchain_community.embeddings import JinaEmbeddings
+from langchain_community.embeddings.ollama import OllamaEmbeddings
 from langchain_core.documents import Document
-from dotenv import load_dotenv
 
 from utility import normalize_distance_reversed
 
@@ -60,11 +60,11 @@ class ChromaService:
         else:
             print('Indexing files into the database: 🟩 Finished')
 
-    def retrieve(self, query: str, language= 'English', score_threshold=.8, k=5) -> List[Document]:
+    def retrieve(self, query: str, language= 'English', score_threshold=.8, k=5, config=None) -> List[Document]:
         return self.chroma.as_retriever(
             search_type="similarity_score_threshold",
             search_kwargs={"score_threshold": score_threshold, 
                            "k": k, 
                            'filter':{'language': language}
                            }
-            ).invoke(query)
+            ).invoke(query, config=config)
