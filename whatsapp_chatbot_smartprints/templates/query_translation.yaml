@@ -30,8 +30,9 @@ prompt: |
 
   **Important** 
   - Return only the refined message. Refrain from adding explanations or introductions.
-  - If the message is in Arabic, return a refined Arabic message if it's in English return English.
+  - Answer in {language}
 
 variables:
   history: "Previous chat history."
   message: "Customer's New message."
+  language: "Language of customer's new message"

@@ -39,13 +39,16 @@ class LLMService:
         chat_history = current_session.messages
         new_message = HumanMessagePromptTemplate.from_template(load_template('chat'))
         
-        translated_query = self.query_translator.invoke({
+        message_language = check_text_language(query)
+
+        translated_query = self.query_translator.invoke(
+            {
             'history': self._format_history(chat_history[-2:]),
-            'message': query
+            'message': query,
+            'language': message_language
             }
         )
         
-        message_language = check_text_language(query)
         context = self.chroma_service.retrieve(translated_query, 
                                                message_language, 
                                                score_threshold=.5, 
