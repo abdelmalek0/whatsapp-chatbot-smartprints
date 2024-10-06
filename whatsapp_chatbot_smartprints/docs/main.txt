@@ -85,7 +85,7 @@ $$$$$$$$$$$$$$$$
 - Others
 
 $$$$$$$$$$$$$$$$
-## Hardware Specifications
+## Kiosk Hardware Specifications
 ### Kiosk Specifications
 **CPU:**
 
@@ -120,7 +120,7 @@ $$$$$$$$$$$$$$$$
 **Other Ports:** Earphone Output, SD Card Slot
 
 $$$$$$$$$$$$$$$$
-## Hardware Specifications
+## Kiosk Hardware Specifications
 ### Screen Panel Specifications
 
 - **Screen Size Options:** 21”, 24”, 27”, 32”
@@ -132,7 +132,7 @@ $$$$$$$$$$$$$$$$
 - **Touch Screen:** 10-point capacitive touch screen with 87±2% transparency
 
 $$$$$$$$$$$$$$$$
-## Hardware Specifications
+## Kiosk Hardware Specifications
 ### Thermal Printer
 
 - **Printing Speed:** 90 mm/s
@@ -145,7 +145,7 @@ $$$$$$$$$$$$$$$$
 - **Driver Compatibility:** Windows 98/2000/NT/XP/Vista/Win7/Win8/Linux
 
 $$$$$$$$$$$$$$$$
-## Hardware Specifications
+## Kiosk Hardware Specifications
 ### 2D Scanner
 
 - **System Interface:** USB, RS232
@@ -166,7 +166,7 @@ $$$$$$$$$$$$$$$$
 2D: PDF417, MicroPDF417, Data Matrix, Maxicode, QR code, Micro QR, Aztec, GM
 
 $$$$$$$$$$$$$$$$
-## Hardware Specifications
+## Kiosk Hardware Specifications
 ### Card Reader
 
 - **NFC Card Reader:** Model M13
@@ -174,7 +174,7 @@ $$$$$$$$$$$$$$$$
 - **MSR (Optional)**
 
 $$$$$$$$$$$$$$$$
-## Hardware Specifications
+## Kiosk Hardware Specifications
 ### Other Specifications
 
 - **Speakers:** 10W x 2 Active Loudspeakers
