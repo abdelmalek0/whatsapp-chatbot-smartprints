@@ -40,7 +40,8 @@ class WebhookService:
             print(f"You received a message from {message['from']} saying:\n{message['text']['body']}")
             
             if message['text']['body'].strip() == RESET_KEYWORD:
-                del self.sessions[message['from']]
+                if message['from'] in self.sessions:
+                    del self.sessions[message['from']]
             else:
                 Thread(target=self.reply_using_llm, 
                     args=[business_phone_number_id, 
